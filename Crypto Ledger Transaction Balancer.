@@ -1,0 +1,40 @@
+#include <stdio.h> 
+
+int main() {  
+long long total_subunits;  
+long long full_coins, network_fee, node_reward, final_change;  
+long long remaining_pool; 
+
+// Fixed cryptographic allocation metrics  
+long long subunits_per_coin = 100000000; // 100 Million units = 1 Coin  
+long long fee_bracket = 50000; // Fixed processing chunk  
+long long reward_split = 25000; // Validator chunk
+
+printf("==================================================\\n");  
+printf(" CRYPTO LEDGER TRANSACTION BALANCER \\n");  
+printf("==================================================\\n"); 
+
+printf("[+] Enter raw transaction subunits: ");  
+scanf("%lld", &total_subunits); 
+
+// Deep structural breakdown using clean Chapter 1 math  
+full_coins = total_subunits / subunits_per_coin;  
+remaining_pool = total_subunits % subunits_per_coin; 
+
+network_fee = remaining_pool / fee_bracket;  
+remaining_pool = remaining_pool % fee_bracket; 
+
+node_reward = remaining_pool / reward_split;  
+final_change = remaining_pool % reward_split; 
+
+printf("\\n============ BLOCK TRANSACTION REPORT ============\\n");  
+printf("Total Subunits Processed:\t%lld units\n", total_subunits);  
+printf("--------------------------------------------------\\n");  
+printf("Minted Full Coins:\t\t%lld COIN\\n", full_coins);  
+printf("Network Processing Fees:\\t%lld fee units\\n", network\_fee);  
+printf("Validator Node Rewards:\\t\\t%lld reward units\\n", node\_reward);  
+printf("Unspent Change (Dust):\\t\\t%lld change units\\n", final\_change);  
+printf("==================================================\\n"); 
+
+return 0;  
+}
