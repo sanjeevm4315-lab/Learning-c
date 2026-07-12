@@ -1,0 +1,43 @@
+cat << 'EOF' > dna_analyzer.c
+#include <stdio.h>
+
+int main() {
+    long long dna_sequence_id;
+    long long genetic_tier, core_marker, base_frequency, checksum;
+    long long processing_pool;
+
+    // Laboratory breakdown divisors
+    long long tier_divisor = 1000000; 
+    long long marker_divisor = 10000;       
+    long long frequency_divisor = 100;         
+
+    printf("==================================================\n");
+    printf("        BIO-TECH DNA SEQUENCE ANALYZER            \n");
+    printf("==================================================\n");
+
+    printf("[+] Enter 8-Digit DNA Sequence ID (e.g., 77442211): ");
+    scanf("%lld", &dna_sequence_id);
+
+    // Chapter 1 Mathematical Breakdown Logic
+    genetic_tier = dna_sequence_id / tier_divisor;
+    processing_pool = dna_sequence_id % tier_divisor;
+
+    core_marker = processing_pool / marker_divisor;
+    processing_pool = processing_pool % marker_divisor;
+
+    base_frequency = processing_pool / frequency_divisor;
+    checksum = processing_pool % frequency_divisor;
+
+    printf("\n============ GENETIC STRUCTURE REPORT ============\n");
+    printf("Raw Sequence Core:\t\t%lld\n", dna_sequence_id);
+    printf("--------------------------------------------------\n");
+    printf("Patient Genetic Tier:\t\tTier %lld\n", genetic_tier);
+    printf("Mutagenic Core Marker:\t\tMK-%04lld\n", core_marker);
+    printf("Cellular Base Frequency:\t%lld Hz\n", base_frequency);
+    printf("Sequence Stability Checksum:\t%lld\n", checksum);
+    printf("==================================================\n");
+
+    return 0;
+}
+EOF
+gcc dna_analyzer.c -o dna_analyzer && ./dna_analyzer
